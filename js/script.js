@@ -64,7 +64,14 @@ function addCarouselItem(object, parent){
 
    const imgElem = document.createElement('img');
    imgElem.src = './'+ object['image'];
+   const titleElem = document.createElement('h3');
+   titleElem.innerHTML = object['title'];
+   const textElem = document.createElement('p');
+   textElem.innerHTML = object['text'];
+
    carouselItem.appendChild(imgElem);
+   carouselItem.appendChild(titleElem);
+   carouselItem.appendChild(textElem);
    parent.appendChild(carouselItem);
 }
 
