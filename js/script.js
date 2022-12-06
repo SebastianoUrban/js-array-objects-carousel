@@ -41,19 +41,14 @@ indexImage = 0;
 //active Image
 activeImageByIndex(indexImage, carouselImage);
 
-
+//button functions
 btnPrev.addEventListener('click',() => {
-   indexImage--;
-   activeImageByIndex(indexImage, carouselImage);
+   indexImage = activeImageByIndex(--indexImage, carouselImage);
 });
-
 
 btnNext.addEventListener('click',() => {
-   indexImage++;
-   activeImageByIndex(indexImage, carouselImage);
+   indexImage = activeImageByIndex(++indexImage, carouselImage);
 });
-
-
 
 
 
@@ -75,7 +70,7 @@ function addCarouselItem(object, parent){
 
 function activeImageByIndex(index, parent) {
    const images = parent.getElementsByClassName('my-carousel-item');
-
+   index == -1 ? index =  images.length - 1: index = index % images.length;
    for (let i = 0; i < images.length; i++) {
       if (i == index) {
          images[i].classList.add('active');
@@ -83,4 +78,5 @@ function activeImageByIndex(index, parent) {
          images[i].classList.remove('active');
       }
    }
+   return index;
 }
