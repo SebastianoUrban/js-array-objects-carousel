@@ -25,3 +25,62 @@ const images = [
       text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
    }
 ];
+
+
+//DOM element
+const carouselImage = document.getElementById('carousel-image');
+const btnNext = document.getElementById('btn-next');
+const btnPrev = document.getElementById('btn-prev');
+
+//add all Carouse Item at Carousel Image 
+images.forEach(objImage => {addCarouselItem(objImage, carouselImage);});
+
+//global index
+indexImage = 0;
+
+//active Image
+activeImageByIndex(indexImage, carouselImage);
+
+
+btnPrev.addEventListener('click',() => {
+   indexImage--;
+   activeImageByIndex(indexImage, carouselImage);
+});
+
+
+btnNext.addEventListener('click',() => {
+   indexImage++;
+   activeImageByIndex(indexImage, carouselImage);
+});
+
+
+
+
+
+
+
+  //========================================//
+ //=============== FUNCTION ===============//
+//========================================//
+
+function addCarouselItem(object, parent){
+   const carouselItem = document.createElement('div');
+   carouselItem.classList.add('my-carousel-item');
+
+   const imgElem = document.createElement('img');
+   imgElem.src = './'+ object['image'];
+   carouselItem.appendChild(imgElem);
+   parent.appendChild(carouselItem);
+}
+
+function activeImageByIndex(index, parent) {
+   const images = parent.getElementsByClassName('my-carousel-item');
+
+   for (let i = 0; i < images.length; i++) {
+      if (i == index) {
+         images[i].classList.add('active');
+      } else {
+         images[i].classList.remove('active');
+      }
+   }
+}
